@@ -1,0 +1,20 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/spikes.gd" id="1_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spikes"]
+size = Vector2(90, 24)
+
+[node name="Spikes" type="Area2D"]
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_script")
+
+[node name="Appearance" type="Polygon2D" parent="."]
+color = Color(0.65, 0.35, 0.85, 1)
+polygon = PackedVector2Array(-45, 12, -36, -10, -27, 12, -18, -10, -9, 12, 0, -10, 9, 12, 18, -10, 27, 12, 36, -10, 45, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_spikes")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,162 @@
+{
+  "characters": {
+    "knight": {
+      "animations": {
+        "attack": {
+          "file": "characters/knight/attack.png",
+          "fps": 6,
+          "frames": 2
+        },
+        "death": {
+          "file": "characters/knight/death.png",
+          "fps": 6,
+          "frames": 1
+        },
+        "hurt": {
+          "file": "characters/knight/hurt.png",
+          "fps": 10,
+          "frames": 1
+        },
+        "idle": {
+          "file": "characters/knight/idle.png",
+          "fps": 6,
+          "frames": 4
+        },
+        "run": {
+          "file": "characters/knight/run.png",
+          "fps": 10,
+          "frames": 2
+        }
+      },
+      "cell": [
+        44,
+        38
+      ]
+    },
+    "shadow": {
+      "animations": {
+        "death": {
+          "file": "characters/shadow/death.png",
+          "fps": 6,
+          "frames": 1
+        },
+        "hurt": {
+          "file": "characters/shadow/hurt.png",
+          "fps": 10,
+          "frames": 1
+        },
+        "idle": {
+          "file": "characters/shadow/idle.png",
+          "fps": 6,
+          "frames": 4
+        }
+      },
+      "cell": [
+        33,
+        42
+      ]
+    },
+    "skeleton": {
+      "animations": {
+        "attack": {
+          "file": "characters/skeleton/attack.png",
+          "fps": 6,
+          "frames": 2
+        },
+        "death": {
+          "file": "characters/skeleton/death.png",
+          "fps": 6,
+          "frames": 1
+        },
+        "hurt": {
+          "file": "characters/skeleton/hurt.png",
+          "fps": 10,
+          "frames": 1
+        },
+        "idle": {
+          "file": "characters/skeleton/idle.png",
+          "fps": 6,
+          "frames": 4
+        }
+      },
+      "cell": [
+        44,
+        38
+      ]
+    },
+    "wizard": {
+      "animations": {
+        "cast": {
+          "file": "characters/wizard/cast.png",
+          "fps": 6,
+          "frames": 2
+        },
+        "death": {
+          "file": "characters/wizard/death.png",
+          "fps": 6,
+          "frames": 1
+        },
+        "hurt": {
+          "file": "characters/wizard/hurt.png",
+          "fps": 10,
+          "frames": 1
+        },
+        "idle": {
+          "file": "characters/wizard/idle.png",
+          "fps": 6,
+          "frames": 4
+        }
+      },
+      "cell": [
+        31,
+        42
+      ]
+    }
+  },
+  "source": "abyss-knight-assets.zip",
+  "textures": {
+    "fx/magic_blade": "fx/magic_blade.png",
+    "fx/purple_flame": "fx/purple_flame.png",
+    "fx/purple_orb": "fx/purple_orb.png",
+    "fx/slash": "fx/slash.png",
+    "parallax/l0_sky_moon": "parallax/l0_sky_moon.png",
+    "parallax/l1_far_mountains": "parallax/l1_far_mountains.png",
+    "parallax/l2_haunted_castle": "parallax/l2_haunted_castle.png",
+    "parallax/l3_mid_ruins_trees": "parallax/l3_mid_ruins_trees.png",
+    "parallax/l4_foreground_props": "parallax/l4_foreground_props.png",
+    "parallax/l5_lighting_glow": "parallax/l5_lighting_glow.png",
+    "props/banner": "props/banner.png",
+    "props/brazier": "props/brazier.png",
+    "props/cage": "props/cage.png",
+    "props/coin": "props/coin.png",
+    "props/crystal": "props/crystal.png",
+    "props/dead_tree": "props/dead_tree.png",
+    "props/gravestone": "props/gravestone.png",
+    "props/key": "props/key.png",
+    "props/lantern": "props/lantern.png",
+    "props/pillar": "props/pillar.png",
+    "props/potion": "props/potion.png",
+    "props/skull": "props/skull.png",
+    "tiles/brick_wall": "tiles/brick_wall.png",
+    "tiles/crystal_vein": "tiles/crystal_vein.png",
+    "tiles/dark_soil": "tiles/dark_soil.png",
+    "tiles/floating_ledge": "tiles/floating_ledge.png",
+    "tiles/ground_top": "tiles/ground_top.png",
+    "tiles/magic_pool": "tiles/magic_pool.png",
+    "tiles/rune_crack": "tiles/rune_crack.png",
+    "tiles/spikes": "tiles/spikes.png",
+    "tiles/stone_floor": "tiles/stone_floor.png",
+    "ui/coin": "ui/coin.png",
+    "ui/counter": "ui/counter.png",
+    "ui/dialog_box": "ui/dialog_box.png",
+    "ui/health_bar": "ui/health_bar.png",
+    "ui/heart_empty": "ui/heart_empty.png",
+    "ui/heart_full": "ui/heart_full.png",
+    "ui/mana_bar": "ui/mana_bar.png",
+    "ui/portrait": "ui/portrait.png",
+    "ui/slot_crystal": "ui/slot_crystal.png",
+    "ui/slot_potion": "ui/slot_potion.png",
+    "ui/slot_sword": "ui/slot_sword.png",
+    "ui/sword": "ui/sword.png"
+  }
+}

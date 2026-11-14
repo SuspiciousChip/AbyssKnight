@@ -1,0 +1,600 @@
+{
+  "pixel_scale_note": "All world art is native size (1 art pixel = 1 px). Render a 640x360 viewport scaled x3 to 1920x1080.",
+  "assets": {
+    "Scene/L0 Sky & Moon": {
+      "file": "parallax/l0_sky_moon.png",
+      "size": [
+        640,
+        360
+      ],
+      "group": "scene"
+    },
+    "Scene/L1 Far Mountains": {
+      "file": "parallax/l1_far_mountains.png",
+      "size": [
+        640,
+        360
+      ],
+      "group": "scene"
+    },
+    "Scene/L2 Haunted Castle": {
+      "file": "parallax/l2_haunted_castle.png",
+      "size": [
+        640,
+        360
+      ],
+      "group": "scene"
+    },
+    "Scene/L3 Mid Ruins & Trees": {
+      "file": "parallax/l3_mid_ruins_trees.png",
+      "size": [
+        640,
+        360
+      ],
+      "group": "scene"
+    },
+    "Scene/L4 Foreground & Props": {
+      "file": "parallax/l4_foreground_props.png",
+      "size": [
+        640,
+        360
+      ],
+      "group": "scene"
+    },
+    "Scene/L5 Lighting & Glow": {
+      "file": "parallax/l5_lighting_glow.png",
+      "size": [
+        640,
+        360
+      ],
+      "group": "scene"
+    },
+    "Knight/Idle": {
+      "file": "characters/knight/idle.png",
+      "size": [
+        24,
+        36
+      ],
+      "group": "char"
+    },
+    "Knight/Run A": {
+      "file": "characters/knight/run_a.png",
+      "size": [
+        24,
+        35
+      ],
+      "group": "char"
+    },
+    "Knight/Run B": {
+      "file": "characters/knight/run_b.png",
+      "size": [
+        24,
+        36
+      ],
+      "group": "char"
+    },
+    "Knight/Attack": {
+      "file": "characters/knight/attack.png",
+      "size": [
+        42,
+        36
+      ],
+      "group": "char"
+    },
+    "Knight/Hurt": {
+      "file": "characters/knight/hurt.png",
+      "size": [
+        24,
+        36
+      ],
+      "group": "char"
+    },
+    "Skeleton Fighter/Idle": {
+      "file": "characters/skeleton_fighter/idle.png",
+      "size": [
+        26,
+        36
+      ],
+      "group": "char"
+    },
+    "Skeleton Fighter/Attack": {
+      "file": "characters/skeleton_fighter/attack.png",
+      "size": [
+        42,
+        36
+      ],
+      "group": "char"
+    },
+    "Skeleton Fighter/Hurt": {
+      "file": "characters/skeleton_fighter/hurt.png",
+      "size": [
+        26,
+        36
+      ],
+      "group": "char"
+    },
+    "Skeleton Wizard/Idle": {
+      "file": "characters/skeleton_wizard/idle.png",
+      "size": [
+        27,
+        38
+      ],
+      "group": "char"
+    },
+    "Skeleton Wizard/Cast": {
+      "file": "characters/skeleton_wizard/cast.png",
+      "size": [
+        29,
+        40
+      ],
+      "group": "char"
+    },
+    "Skeleton Wizard/Hurt": {
+      "file": "characters/skeleton_wizard/hurt.png",
+      "size": [
+        27,
+        38
+      ],
+      "group": "char"
+    },
+    "Shadow Raiser/Idle": {
+      "file": "characters/shadow_raiser/idle.png",
+      "size": [
+        31,
+        40
+      ],
+      "group": "char"
+    },
+    "Shadow Raiser/Hurt": {
+      "file": "characters/shadow_raiser/hurt.png",
+      "size": [
+        31,
+        40
+      ],
+      "group": "char"
+    },
+    "FX/Slash": {
+      "file": "fx/slash.png",
+      "size": [
+        13,
+        23
+      ],
+      "group": "fx"
+    },
+    "FX/Purple Orb": {
+      "file": "fx/purple_orb.png",
+      "size": [
+        18,
+        15
+      ],
+      "group": "fx"
+    },
+    "FX/Magic Blade": {
+      "file": "fx/magic_blade.png",
+      "size": [
+        21,
+        5
+      ],
+      "group": "fx"
+    },
+    "FX/Purple Flame": {
+      "file": "fx/purple_flame.png",
+      "size": [
+        13,
+        18
+      ],
+      "group": "fx"
+    },
+    "Tile/Brick Wall": {
+      "file": "tiles/brick_wall.png",
+      "size": [
+        32,
+        32
+      ],
+      "group": "tile"
+    },
+    "Tile/Ground Top": {
+      "file": "tiles/ground_top.png",
+      "size": [
+        32,
+        32
+      ],
+      "group": "tile"
+    },
+    "Tile/Stone Floor": {
+      "file": "tiles/stone_floor.png",
+      "size": [
+        32,
+        32
+      ],
+      "group": "tile"
+    },
+    "Tile/Rune Crack": {
+      "file": "tiles/rune_crack.png",
+      "size": [
+        32,
+        32
+      ],
+      "group": "tile"
+    },
+    "Tile/Dark Soil": {
+      "file": "tiles/dark_soil.png",
+      "size": [
+        32,
+        32
+      ],
+      "group": "tile"
+    },
+    "Tile/Crystal Vein": {
+      "file": "tiles/crystal_vein.png",
+      "size": [
+        32,
+        32
+      ],
+      "group": "tile"
+    },
+    "Tile/Floating Ledge": {
+      "file": "tiles/floating_ledge.png",
+      "size": [
+        32,
+        31
+      ],
+      "group": "tile"
+    },
+    "Tile/Spikes": {
+      "file": "tiles/spikes.png",
+      "size": [
+        32,
+        28
+      ],
+      "group": "tile"
+    },
+    "Tile/Magic Pool": {
+      "file": "tiles/magic_pool.png",
+      "size": [
+        32,
+        32
+      ],
+      "group": "tile"
+    },
+    "Prop/Skull": {
+      "file": "props/skull.png",
+      "size": [
+        10,
+        9
+      ],
+      "group": "prop"
+    },
+    "Prop/Key": {
+      "file": "props/key.png",
+      "size": [
+        12,
+        6
+      ],
+      "group": "prop"
+    },
+    "Prop/Coin": {
+      "file": "props/coin.png",
+      "size": [
+        8,
+        8
+      ],
+      "group": "prop"
+    },
+    "Prop/Potion": {
+      "file": "props/potion.png",
+      "size": [
+        8,
+        11
+      ],
+      "group": "prop"
+    },
+    "Prop/Crystal": {
+      "file": "props/crystal.png",
+      "size": [
+        10,
+        12
+      ],
+      "group": "prop"
+    },
+    "Prop/Gravestone": {
+      "file": "props/gravestone.png",
+      "size": [
+        12,
+        13
+      ],
+      "group": "prop"
+    },
+    "Prop/Cage": {
+      "file": "props/cage.png",
+      "size": [
+        9,
+        11
+      ],
+      "group": "prop"
+    },
+    "Prop/Brazier": {
+      "file": "props/brazier.png",
+      "size": [
+        10,
+        13
+      ],
+      "group": "prop"
+    },
+    "Prop/Banner": {
+      "file": "props/banner.png",
+      "size": [
+        10,
+        12
+      ],
+      "group": "prop"
+    },
+    "Prop/Lantern": {
+      "file": "props/lantern.png",
+      "size": [
+        6,
+        12
+      ],
+      "group": "prop"
+    },
+    "Prop/Pillar": {
+      "file": "props/pillar.png",
+      "size": [
+        12,
+        30
+      ],
+      "group": "prop"
+    },
+    "Nature/Dead Tree": {
+      "file": "props/dead_tree.png",
+      "size": [
+        36,
+        41
+      ],
+      "group": "nature"
+    },
+    "HUD/Heart Full": {
+      "file": "ui/heart_full.png",
+      "size": [
+        35,
+        35
+      ],
+      "group": "ui"
+    },
+    "HUD/Heart Empty": {
+      "file": "ui/heart_empty.png",
+      "size": [
+        35,
+        35
+      ],
+      "group": "ui"
+    },
+    "HUD/Health Bar": {
+      "file": "ui/health_bar.png",
+      "size": [
+        300,
+        24
+      ],
+      "group": "ui"
+    },
+    "HUD/Mana Bar": {
+      "file": "ui/mana_bar.png",
+      "size": [
+        300,
+        24
+      ],
+      "group": "ui"
+    },
+    "HUD/Slot \u00b7 Sword": {
+      "file": "ui/slot_sword.png",
+      "size": [
+        80,
+        80
+      ],
+      "group": "ui"
+    },
+    "HUD/Slot \u00b7 Potion": {
+      "file": "ui/slot_potion.png",
+      "size": [
+        80,
+        80
+      ],
+      "group": "ui"
+    },
+    "HUD/Slot \u00b7 Crystal": {
+      "file": "ui/slot_crystal.png",
+      "size": [
+        80,
+        80
+      ],
+      "group": "ui"
+    },
+    "HUD/Portrait": {
+      "file": "ui/portrait.png",
+      "size": [
+        112,
+        112
+      ],
+      "group": "ui"
+    },
+    "HUD/Counter": {
+      "file": "ui/counter.png",
+      "size": [
+        151,
+        52
+      ],
+      "group": "ui"
+    },
+    "Icon/Sword": {
+      "file": "ui/sword.png",
+      "size": [
+        48,
+        48
+      ],
+      "group": "ui"
+    },
+    "Icon/Coin": {
+      "file": "ui/coin.png",
+      "size": [
+        32,
+        32
+      ],
+      "group": "ui"
+    },
+    "HUD/Dialog Box": {
+      "file": "ui/dialog_box.png",
+      "size": [
+        720,
+        163
+      ],
+      "group": "ui"
+    }
+  },
+  "character_sheets": {
+    "knight": {
+      "file": "characters/knight/knight_sheet.png",
+      "cell": [
+        44,
+        38
+      ],
+      "frames": {
+        "idle": {
+          "x": 0,
+          "y": 0,
+          "w": 44,
+          "h": 38
+        },
+        "run_a": {
+          "x": 44,
+          "y": 0,
+          "w": 44,
+          "h": 38
+        },
+        "run_b": {
+          "x": 88,
+          "y": 0,
+          "w": 44,
+          "h": 38
+        },
+        "attack": {
+          "x": 132,
+          "y": 0,
+          "w": 44,
+          "h": 38
+        },
+        "hurt": {
+          "x": 176,
+          "y": 0,
+          "w": 44,
+          "h": 38
+        }
+      }
+    },
+    "skeleton_fighter": {
+      "file": "characters/skeleton_fighter/skeleton_fighter_sheet.png",
+      "cell": [
+        44,
+        38
+      ],
+      "frames": {
+        "idle": {
+          "x": 0,
+          "y": 0,
+          "w": 44,
+          "h": 38
+        },
+        "attack": {
+          "x": 44,
+          "y": 0,
+          "w": 44,
+          "h": 38
+        },
+        "hurt": {
+          "x": 88,
+          "y": 0,
+          "w": 44,
+          "h": 38
+        }
+      }
+    },
+    "skeleton_wizard": {
+      "file": "characters/skeleton_wizard/skeleton_wizard_sheet.png",
+      "cell": [
+        31,
+        42
+      ],
+      "frames": {
+        "idle": {
+          "x": 0,
+          "y": 0,
+          "w": 31,
+          "h": 42
+        },
+        "cast": {
+          "x": 31,
+          "y": 0,
+          "w": 31,
+          "h": 42
+        },
+        "hurt": {
+          "x": 62,
+          "y": 0,
+          "w": 31,
+          "h": 42
+        }
+      }
+    },
+    "shadow_raiser": {
+      "file": "characters/shadow_raiser/shadow_raiser_sheet.png",
+      "cell": [
+        33,
+        42
+      ],
+      "frames": {
+        "idle": {
+          "x": 0,
+          "y": 0,
+          "w": 33,
+          "h": 42
+        },
+        "hurt": {
+          "x": 33,
+          "y": 0,
+          "w": 33,
+          "h": 42
+        }
+      }
+    }
+  },
+  "tileset": {
+    "file": "tiles/tileset_32.png",
+    "tile_size": 32,
+    "order": [
+      "brick_wall",
+      "crystal_vein",
+      "dark_soil",
+      "floating_ledge",
+      "ground_top",
+      "magic_pool",
+      "rune_crack",
+      "spikes",
+      "stone_floor"
+    ]
+  },
+  "parallax_scroll": {
+    "l0": 0.05,
+    "l1": 0.15,
+    "l2": 0.3,
+    "l3": 0.6,
+    "l4": 1.0,
+    "l5": 1.0
+  },
+  "animation_hints": {
+    "idle": "1 key pose; bob 1px up/down, 4 frames @ 6 fps",
+    "run": "alternate run_a / run_b @ 10 fps (knight)",
+    "attack": "idle -> attack, show fx/slash for 120 ms",
+    "hurt": "hurt pose 100 ms, then 0.8 s flicker",
+    "death": "tween rotate to -90 deg and fade to 0.4",
+    "shadow_raiser": "sine float +-3 px, alpha 0.85-1"
+  }
+}

@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://1fnvtb38kxr4"]
+
+[ext_resource type="PackedScene" path="res://scenes/knight.tscn" id="1_knight"]
+[ext_resource type="PackedScene" path="res://scenes/math_ui.tscn" id="2_math_ui"]
+[ext_resource type="Script" path="res://scenes/test_level.gd" id="3_script"]
+[ext_resource type="Texture2D" path="res://art/abyss_atlas_concept.png" id="4_atlas"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_back"]
+bg_color = Color(0.08, 0.05, 0.13, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.47, 0.32, 0.67, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_health_fill"]
+bg_color = Color(0.63, 0.25, 0.85, 1)
+
+[node name="TestLevel" type="Node2D"]
+script = ExtResource("3_script")
+
+[node name="AbyssBackdrop" type="Polygon2D" parent="."]
+color = Color(0.045, 0.035, 0.09, 1)
+polygon = PackedVector2Array(-400, -1000, 1900, -1000, 1900, 700, -400, 700)
+
+[node name="AbyssArt" type="Sprite2D" parent="."]
+position = Vector2(900, -430)
+scale = Vector2(5, 5)
+texture_filter = 1
+texture = ExtResource("4_atlas")
+region_enabled = true
+region_rect = Rect2(16, 766, 580, 228)
+
+[node name="DistantRuins" type="Polygon2D" parent="."]
+color = Color(0.085, 0.065, 0.16, 1)
+polygon = PackedVector2Array(-200, 130, -200, -120, -160, -120, -160, 130, 80, 130, 80, -80, 120, -80, 120, 130, 470, 130, 470, -150, 510, -150, 510, 130, 810, 130, 810, -90, 850, -90, 850, 130, 1210, 130, 1210, -130, 1250, -130, 1250, 130, 1700, 130, 1700, 700, -200, 700)
+
+[node name="Terrain" type="Node2D" parent="."]
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Collectibles" type="Node2D" parent="."]
+
+[node name="Hazards" type="Node2D" parent="."]
+
+[node name="Knight" parent="." instance=ExtResource("1_knight")]
+
+[node name="MathUI" parent="." instance=ExtResource("2_math_ui")]
+
+[node name="Gate" type="Polygon2D" parent="."]
+color = Color(0.9, 0.2, 0.4, 0.85)
+polygon = PackedVector2Array(1550, 35, 1590, 35, 1590, 135, 1550, 135)
+
+[node name="GateStatus" type="Label" parent="."]
+offset_left = 1450.0
+offset_top = -20.0
+offset_right = 1690.0
+offset_bottom = 6.0
+theme_override_colors/font_color = Color(1, 0.82, 0.9, 1)
+theme_override_font_sizes/font_size = 15
+text = "Defeat enemies to open gate"
+horizontal_alignment = 1
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Stage" type="Label" parent="HUD"]
+offset_left = 20.0
+offset_top = 15.0
+offset_right = 420.0
+offset_bottom = 45.0
+
+[node name="HealthBar" type="ProgressBar" parent="HUD"]
+offset_left = 20.0
+offset_top = 105.0
+offset_right = 170.0
+offset_bottom = 125.0
+max_value = 3.0
+value = 3.0
+show_percentage = false
+theme_override_styles/background = SubResource("StyleBoxFlat_health_back")
+theme_override_styles/fill = SubResource("StyleBoxFlat_health_fill")
+
+[node name="Quest" type="Label" parent="HUD"]
+offset_left = 20.0
+offset_top = 42.0
+offset_right = 420.0
+offset_bottom = 72.0
+
+[node name="Hint" type="Label" parent="HUD"]
+offset_left = 20.0
+offset_top = 69.0
+offset_right = 900.0
+offset_bottom = 99.0

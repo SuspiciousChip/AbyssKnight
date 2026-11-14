@@ -1,0 +1,8 @@
+.env
+.env.*
+art/figma_exports/
+__pycache__/
+.venv/
+.godot/
+.DS_Store
+*.pyc
