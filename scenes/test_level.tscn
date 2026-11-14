@@ -93,3 +93,48 @@ offset_left = 20.0
 offset_top = 69.0
 offset_right = 900.0
 offset_bottom = 99.0
+
+[node name="RetryUI" type="CanvasLayer" parent="."]
+visible = false
+layer = 20
+
+[node name="Dim" type="ColorRect" parent="RetryUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.02, 0.01, 0.05, 0.72)
+
+[node name="Center" type="CenterContainer" parent="RetryUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="RetryUI/Center"]
+custom_minimum_size = Vector2(440, 220)
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="RetryUI/Center/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="RetryUI/Center/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.72, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "The knight has fallen"
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="RetryUI/Center/Panel/VBox"]
+layout_mode = 2
+text = "Your progress in this level is waiting."
+horizontal_alignment = 1
+
+[node name="BounceBackButton" type="Button" parent="RetryUI/Center/Panel/VBox"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Bounce Back to Game"
+
+[connection signal="pressed" from="RetryUI/Center/Panel/VBox/BounceBackButton" to="." method="bounce_back_to_game"]

@@ -41,9 +41,22 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	$RetryUI.process_mode = Node.PROCESS_MODE_ALWAYS
 	setup_parallax()
 	setup_art_hud()
 	build_stage()
+
+
+func show_retry_ui() -> void:
+	$RetryUI.show()
+	get_tree().paused = true
+	$RetryUI/Center/Panel/VBox/BounceBackButton.grab_focus()
+
+
+func bounce_back_to_game() -> void:
+	get_tree().paused = false
+	$RetryUI.hide()
+	$Knight.bounce_back()
 
 
 func _process(_delta: float) -> void:
@@ -257,7 +270,7 @@ func _physics_process(_delta: float) -> void:
 	if not gate_open:
 		var enemies_remaining := 0
 		for enemy in $Enemies.get_children():
-			if not enemy.defeated:
+			if enemy.is_in_group("enemies") and not enemy.defeated:
 				enemies_remaining += 1
 		if enemies_remaining == 0 and $Rune.solved:
 			gate_open = true
@@ -355,7 +368,8 @@ func add_platform(center_x: float, width: float, center_y: float, color: Color) 
 		Vector2(width / 2.0, 16.0), Vector2(-width / 2.0, 16.0)
 	])
 	body.add_child(appearance)
-	var tile_count: int = int(ceil(width / 32.0))
+	var full_tiles: int = int(floor(width / 32.0))
+	var last_width: float = width - full_tiles * 32.0
 	var tile_texture: Texture2D = FIGMA_ART.named_texture("tiles/ground_top" if center_y == 150.0 else "tiles/floating_ledge")
 	if tile_texture != null and tile_texture.get_size() == Vector2(32, 32):
 		var tile_set := TileSet.new()
@@ -369,22 +383,41 @@ func add_platform(center_x: float, width: float, center_y: float, color: Color) 
 		map.tile_set = tile_set
 		map.position = Vector2(-width / 2.0, -16.0)
 		map.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		for tile_index in range(tile_count):
+		for tile_index in range(full_tiles):
 			map.set_cell(Vector2i(tile_index, 0), source_id, Vector2i.ZERO)
 		body.add_child(map)
+		if last_width > 0.0:
+			add_tile_piece(body, tile_texture, Vector2(-width / 2.0 + full_tiles * 32.0, -16.0), last_width)
+	elif tile_texture != null and tile_texture.get_width() == 32:
+		for tile_index in range(full_tiles):
+			add_tile_piece(body, tile_texture, Vector2(-width / 2.0 + tile_index * 32.0, -16.0), 32.0)
+		if last_width > 0.0:
+			add_tile_piece(body, tile_texture, Vector2(-width / 2.0 + full_tiles * 32.0, -16.0), last_width)
 	else:
-		var tile_left: float = -width / 2.0 + 16.0
-		for tile_index in range(tile_count):
+		for tile_index in range(full_tiles + int(last_width > 0.0)):
 			var tile := Sprite2D.new()
 			tile.texture = ATLAS
 			tile.region_enabled = true
 			var source_x: float = [16.0, 226.0, 296.0][stage]
-			tile.region_rect = Rect2(source_x, 35.0, 64.0, 64.0)
+			var piece_width: float = last_width if tile_index == full_tiles else 32.0
+			tile.region_rect = Rect2(source_x, 35.0, piece_width * 2.0, 64.0)
 			tile.scale = Vector2(0.5, 0.5)
-			tile.position = Vector2(tile_left + tile_index * 32.0, 0.0)
+			tile.centered = false
+			tile.position = Vector2(-width / 2.0 + tile_index * 32.0, -16.0)
 			tile.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 			body.add_child(tile)
 	$Terrain.add_child(body)
+
+
+func add_tile_piece(body: StaticBody2D, texture: Texture2D, offset: Vector2, piece_width: float) -> void:
+	var tile := Sprite2D.new()
+	tile.texture = texture
+	tile.region_enabled = true
+	tile.region_rect = Rect2(0, 0, piece_width, texture.get_height())
+	tile.centered = false
+	tile.position = offset
+	tile.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	body.add_child(tile)
 
 
 func collect_shard(shard: Area2D) -> void:

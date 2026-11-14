@@ -23,6 +23,15 @@ func _ready() -> void:
 	$Dim.hide()
 	$Center.hide()
 
+
+func _input(event: InputEvent) -> void:
+	if $Center.visible and event.is_action_pressed("ui_cancel"):
+		$Center.hide()
+		$Dim.hide()
+		current_enemy = null
+		get_tree().paused = false
+		get_viewport().set_input_as_handled()
+
 func open_for(enemy: Node2D) -> void:
 	if enemy.solved:
 		return

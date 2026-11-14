@@ -13,6 +13,7 @@ var hit_cooldown: float = 0.0
 var gravity: float = 1000.0
 var action_timer: float = 1.5
 var home_x: float = 0.0
+var home_position: Vector2 = Vector2.ZERO
 var patrol_direction: int = 1
 var float_time: float = 0.0
 @onready var appearance: Sprite2D = $Appearance
@@ -27,7 +28,9 @@ func _ready() -> void:
 		appearance.texture = null
 		appearance.scale = Vector2.ONE
 		animated.play("idle")
+		animated.animation_finished.connect(_on_animation_finished)
 	home_x = global_position.x
+	home_position = global_position
 	var question: Dictionary = get_node("/root/EquationManager").next_question()
 	if question.is_empty():
 		$EquationLabel.text = "No question left"
@@ -74,8 +77,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	if not defeated and abs(velocity.x) > 1.0:
 		appearance.scale.x = -abs(appearance.scale.x) if velocity.x < 0.0 else abs(appearance.scale.x)
-	if defeated and global_position.y > 500.0:
-		queue_free()
+	if global_position.y > 500.0:
+		if defeated:
+			queue_free()
+		else:
+			global_position = home_position
+			velocity = Vector2.ZERO
+			hit_cooldown = 0.5
+			if animated.visible:
+				animated.play("idle")
 
 
 func take_hit(direction: int) -> void:
@@ -113,3 +123,8 @@ func cast_spell(knight: Node2D) -> void:
 	get_parent().add_child(spell)
 	spell.global_position = global_position + Vector2(cast_direction * 22.0, -5.0)
 	spell.direction = cast_direction
+
+
+func _on_animation_finished() -> void:
+	if not defeated and animated.visible:
+		animated.play("idle")

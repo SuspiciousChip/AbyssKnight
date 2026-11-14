@@ -17,6 +17,8 @@ var damage_cooldown: float = 0.0
 var walk_time: float = 0.0
 var potion_charges: int = 1
 var max_potions: int = 2
+var dead: bool = false
+var hurt_time: float = 0.0
 
 
 func _ready() -> void:
@@ -31,12 +33,19 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		velocity.y += gravity * delta
+		velocity.x = move_toward(velocity.x, 0.0, 300.0 * delta)
+		move_and_slide()
+		return
 	if global_position.y > 500.0:
-		global_position = Vector2.ZERO
+		global_position = Vector2(0.0, 100.0)
 		velocity = Vector2.ZERO
 		take_damage(1)
 	if damage_cooldown > 0.0:
 		damage_cooldown -= delta
+	if hurt_time > 0.0:
+		hurt_time -= delta
 	# Pull the knight down while in the air.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -58,7 +67,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = jump_speed
 
 	move_and_slide()
-	if animated.visible and attack_ready:
+	if animated.visible and attack_ready and hurt_time <= 0.0:
 		var animation := "run" if direction != 0.0 and is_on_floor() and animated.sprite_frames.has_animation("run") else "idle"
 		if animated.animation != animation:
 			animated.play(animation)
@@ -91,7 +100,7 @@ func get_math_target() -> Node2D:
 
 
 func use_potion() -> bool:
-	if potion_charges <= 0 or health >= max_health:
+	if dead or potion_charges <= 0 or health >= max_health:
 		return false
 	potion_charges -= 1
 	health += 1
@@ -119,19 +128,36 @@ func attack() -> void:
 		get_tree().create_timer(0.12).timeout.connect(slash.queue_free)
 	sprite.rotation = -0.16 * facing
 	create_tween().tween_property(sprite, "rotation", 0.0, 0.22)
-	for body in sword_area.get_overlapping_bodies():
-		if body.has_method("take_hit"):
-			body.take_hit(facing)
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		if enemy.defeated:
+			continue
+		var horizontal: float = (enemy.global_position.x - global_position.x) * facing
+		if horizontal > 0.0 and horizontal <= 52.0 and abs(enemy.global_position.y - global_position.y) <= 26.0:
+			enemy.take_hit(facing)
 	await get_tree().create_timer(0.4).timeout
+	if dead:
+		return
 	attack_ready = true
 	if animated.visible:
 		animated.play("idle")
 
 
 func take_damage(amount: int) -> void:
-	if damage_cooldown > 0.0:
+	if dead or damage_cooldown > 0.0:
 		return
-	health -= amount
+	health = max(0, health - amount)
+	$HealthLabel.text = "HP: %d" % health
+	var health_bar: ProgressBar = get_parent().get_node_or_null("HUD/HealthBar")
+	if health_bar != null:
+		health_bar.max_value = max_health
+		health_bar.value = health
+	if get_parent().has_method("update_art_hud"):
+		get_parent().update_art_hud()
+	if health <= 0:
+		start_death()
+		return
+	damage_cooldown = 1.0
+	hurt_time = 0.1
 	if animated.visible and animated.sprite_frames.has_animation("hurt"):
 		animated.play("hurt")
 	sprite.modulate = Color(1.0, 0.45, 0.65)
@@ -140,20 +166,38 @@ func take_damage(amount: int) -> void:
 		flicker.tween_property(sprite, "modulate:a", 0.35, 0.1)
 		flicker.tween_property(sprite, "modulate:a", 1.0, 0.1)
 	flicker.tween_property(sprite, "modulate", Color.WHITE, 0.01)
+
+
+func start_death() -> void:
+	dead = true
+	attack_ready = false
+	velocity = Vector2(-facing * 170.0, -300.0)
+	if animated.visible and animated.sprite_frames.has_animation("death"):
+		animated.play("death")
+	var death_tween := create_tween().set_parallel(true)
+	death_tween.tween_property(sprite, "rotation", -PI / 2.0, 0.6)
+	death_tween.tween_property(sprite, "modulate:a", 0.4, 0.6)
+	await get_tree().create_timer(0.65).timeout
+	if is_inside_tree() and dead:
+		get_parent().show_retry_ui()
+
+
+func bounce_back() -> void:
+	dead = false
+	attack_ready = true
+	hurt_time = 0.0
+	health = max_health
+	damage_cooldown = 1.0
+	global_position = Vector2(0.0, 100.0)
+	velocity = Vector2.ZERO
+	sprite.rotation = 0.0
+	sprite.modulate = Color.WHITE
+	sprite.position.y = -2.0
+	if animated.visible:
+		animated.play("idle")
 	$HealthLabel.text = "HP: %d" % health
 	var health_bar: ProgressBar = get_parent().get_node_or_null("HUD/HealthBar")
 	if health_bar != null:
-		health_bar.max_value = max_health
 		health_bar.value = health
 	if get_parent().has_method("update_art_hud"):
 		get_parent().update_art_hud()
-	damage_cooldown = 1.0
-	if health <= 0:
-		global_position = Vector2.ZERO
-		velocity = Vector2.ZERO
-		health = max_health
-		$HealthLabel.text = "HP: %d" % health
-		if health_bar != null:
-			health_bar.value = health
-		if get_parent().has_method("update_art_hud"):
-			get_parent().update_art_hud()
