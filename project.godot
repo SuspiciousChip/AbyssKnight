@@ -12,12 +12,13 @@ config_version=5
 
 config/name="MethBall"
 run/main_scene="res://scenes/title_screen.tscn"
-config/features=PackedStringArray("4.7", "Forward Plus")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 EquationManager="*res://scripts/equation_manager.gd"
+BackgroundMusic="*res://scripts/background_music.gd"
 
 [display]
 
@@ -67,4 +68,6 @@ solve={
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 rendering_device/driver.windows="d3d12"

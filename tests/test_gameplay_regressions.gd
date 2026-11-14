@@ -27,6 +27,7 @@ func run() -> void:
 	knight.facing = -1
 	knight.sword_area.position.x = -25.0
 	knight.attack()
+	assert(knight.get_node("SwordSound").playing, "Sword swish did not play")
 	assert(not skeleton.defeated, "Left attack hit enemy on right")
 	await create_timer(0.45).timeout
 	knight.global_position = Vector2(100, 100)
@@ -37,6 +38,7 @@ func run() -> void:
 	knight.facing = 1
 	knight.sword_area.position.x = 25.0
 	knight.attack()
+	assert(skeleton.get_node("HitSound").playing, "Enemy hit sound did not play")
 	assert(skeleton.defeated, "Right attack missed enemy on right")
 	var math_ui: CanvasLayer = level.get_node("MathUI")
 	math_ui.open_for(wizard)
@@ -50,6 +52,7 @@ func run() -> void:
 	knight.health = 1
 	knight.damage_cooldown = 0.0
 	knight.take_damage(1)
+	assert(knight.get_node("DeathSound").playing, "Death sound did not play")
 	assert(knight.dead and knight.health == 0, "Knight did not enter death state")
 	await create_timer(0.75).timeout
 	assert(level.get_node("RetryUI").visible and paused, "Death window did not appear")
@@ -75,5 +78,18 @@ func run() -> void:
 	await physics_frame
 	await physics_frame
 	assert(level.stage == 1, "Active spell blocked the level transition")
+	var music: AudioStreamPlayer = root.get_node("BackgroundMusic")
+	for attempt in range(5):
+		if music.playing:
+			break
+		await process_frame
+	assert(music.playing, "Background music stopped during gameplay")
+	assert(music.process_mode == Node.PROCESS_MODE_ALWAYS, "Background music must run while paused")
+	paused = true
+	await process_frame
+	assert(music.playing, "Background music stopped during pause")
+	paused = false
+	level.queue_free()
+	await process_frame
 	print("PASS: spell counting, enemy recovery, directional sword, dialog cancel, death bounce, bridge art")
 	quit(0)

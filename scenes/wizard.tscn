@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/skeleton.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://art/wizard_idle.png" id="2_texture"]
+[ext_resource type="AudioStream" path="res://assets/audio/enemy_hit.wav" id="3_hit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
 size = Vector2(24, 32)
@@ -9,6 +10,10 @@ size = Vector2(24, 32)
 [node name="Wizard" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_script")
 enemy_kind = "wizard"
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_hit")
+volume_db = -4.0
 
 [node name="Appearance" type="Sprite2D" parent="."]
 scale = Vector2(0.04, 0.04)

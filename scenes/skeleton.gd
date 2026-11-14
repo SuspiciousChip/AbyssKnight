@@ -91,6 +91,7 @@ func _physics_process(delta: float) -> void:
 func take_hit(direction: int) -> void:
 	if not solved or defeated or hit_cooldown > 0.0:
 		return
+	$HitSound.play()
 	hits_remaining -= 1
 	if animated.visible and animated.sprite_frames.has_animation("hurt"):
 		animated.play("hurt")

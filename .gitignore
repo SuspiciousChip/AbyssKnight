@@ -4,5 +4,6 @@ art/figma_exports/
 __pycache__/
 .venv/
 .godot/
+build/
 .DS_Store
 *.pyc

@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://6kmwkuaw3byw" path="res://scenes/knight.gd" id="1_dp28g"]
 [ext_resource type="Texture2D" path="res://art/knight_idle.png" id="2_3i0j8"]
+[ext_resource type="AudioStream" path="res://assets/audio/sword_swish.wav" id="3_sword"]
+[ext_resource type="AudioStream" path="res://assets/audio/knight_death.wav" id="4_death"]
+[ext_resource type="AudioStream" path="res://assets/audio/enemy_hit.wav" id="5_hit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abitu"]
 size = Vector2(24, 32)
@@ -11,6 +14,18 @@ size = Vector2(30, 20)
 
 [node name="Knight" type="CharacterBody2D" unique_id=281197236 groups=["player"]]
 script = ExtResource("1_dp28g")
+
+[node name="SwordSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sword")
+volume_db = -5.0
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_death")
+volume_db = -3.0
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_hit")
+volume_db = -7.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1834499555]
 position = Vector2(0, -2)

@@ -115,6 +115,7 @@ func use_potion() -> bool:
 
 func attack() -> void:
 	attack_ready = false
+	$SwordSound.play()
 	if animated.visible and animated.sprite_frames.has_animation("attack"):
 		animated.play("attack")
 	var slash_texture: Texture2D = FIGMA_ART.named_texture("fx/slash")
@@ -156,6 +157,7 @@ func take_damage(amount: int) -> void:
 	if health <= 0:
 		start_death()
 		return
+	$HitSound.play()
 	damage_cooldown = 1.0
 	hurt_time = 0.1
 	if animated.visible and animated.sprite_frames.has_animation("hurt"):
@@ -170,6 +172,7 @@ func take_damage(amount: int) -> void:
 
 func start_death() -> void:
 	dead = true
+	$DeathSound.play()
 	attack_ready = false
 	velocity = Vector2(-facing * 170.0, -300.0)
 	if animated.visible and animated.sprite_frames.has_animation("death"):
